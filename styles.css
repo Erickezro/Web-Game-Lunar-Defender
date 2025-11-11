@@ -1,0 +1,126 @@
+ html, body {
+    margin: 0;
+    height: 100%;
+    background: url("./assets/img/star-field.jpg") no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+  }
+  canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: transparent; 
+  }
+
+/* Estilos para el cuadro/panel UI */
+.ui-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  max-width: 90vw;
+  background: rgba(10, 10, 20, 0.85);
+  color: #fff;
+  padding: 20px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+
+#menu-logo {
+  display: block;
+  max-width: 240px;
+  width: 72%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+.ui-buttons { display: flex; gap: 8px; margin-top: 8px; }
+.ui-button {
+  background:    #704621;
+  background:    linear-gradient(#704621, #1e1e1e);
+  border-radius: 11px;
+  padding:       20px 45px;
+  color:         #ffffff;
+  display:       inline-block;
+  font:          normal bold 26px/1 "Open Sans", sans-serif;
+  text-align:    center;
+  cursor: pointer;
+}
+
+.ui-button:hover { filter: brightness(1.05); }
+.ui-button:active { transform: translateY(1px); }
+
+/* Estilos específicos para el panel de Opciones */
+.options-panel {
+  display: none; /* se mostrará vía JS */
+  width: 800px;
+  max-width: 90vw;
+  gap: 12px;
+  padding: 30px;
+}
+
+#options-panel h1 {
+  margin: 0;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
+  color: #a7703d;
+  text-align: center;
+}
+
+.options-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+.options-buttons .ui-button { padding: 12px 18px; font: normal bold 16px/1 "Open Sans", sans-serif; border-radius:10px; }
+
+/* Estilos específicos para el panel de Historia */
+.history-panel {
+  display: none; /* se mostrará vía JS */
+  width: 800px;
+  max-width: 90vw;
+  gap: 12px;
+  padding: 30px;
+}
+
+#history-panel h1 {
+  margin: 0;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
+  color: #a7703d;
+  text-align: center;
+}
+
+#history-panel p {
+  font: normal 16px/1.5 "Open Sans", sans-serif;
+  color: #ddd;
+  text-align: justify;
+}
+
+/* Estilos para el panel de Estadísticas */
+
+.stats-panel {
+  display: none;
+  width: 800px;
+  max-width: 90vw;
+  gap: 12px;
+  padding: 30px;
+}
+
+#stats-panel h1 {
+  margin: 0;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
+  color: #a7703d;
+  text-align: center;
+}
+
+#stats-panel p {
+  font: normal 16px/1.5 "Open Sans", sans-serif;
+  color: #ddd;
+  text-align: justify;
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunar Defender</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="./assets/img/planet05.png">
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <!-- Cuadro/Panel UI: grupo donde colocar botones, texto, etc. -->
+    <div id="ui-panel" class="ui-panel" role="dialog" aria-label="Panel de menú">
+      
+      <img id="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
+      
+      <div class="ui-buttons">
+        <button id="start-btn" class="ui-button">Iniciar</button>
+        <button id="history-btn" class="ui-button">Historia</button>
+        <button id="stats-btn" class="ui-button">Stats</button>
+        <button id="options-btn" class="ui-button">Opciones</button>
+      </div>
+
+    </div>
+
+    <!-- Panel de Opciones (oculto por defecto) -->
+    <div id="options-panel" class="ui-panel options-panel" role="dialog" aria-label="Panel de opciones" style="display:none;">
+
+      <img id="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
+      <h1>Opciones</h1>
+
+      <div class="options-buttons">
+        <button id="opt-mute-music" class="ui-button">Musica ON/OFF</button>
+        <button id="opt-mute-sfx" class="ui-button">SFX ON/OFF</button>
+        <button id="opt-controls" class="ui-button">Controles</button>
+      </div>
+
+      <div style="width:100%; display:flex; justify-content:center; margin-top:8px;">
+        <button id="opt-back" class="ui-button">Volver</button>
+      </div>
+    </div>
+
+    <!-- Panel de Historia (oculto por defecto) -->
+    <div id="history-panel" class="ui-panel history-panel" role="dialog" aria-label="Panel de Historia" style="display: none;">
+
+      <img id ="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
+      <h1>Historia</h1>
+
+      <div class="history-text">
+        <p>En el año </p>
+      </div>
+      
+      <div style="width:100%; display:flex; justify-content:center; margin-top:8px;">
+        <button id="history-back" class="ui-button">Volver</button>
+      </div>
+
+    </div>
+
+    <!-- Panel de Estadísticas (oculto por defecto) -->
+    <div id="stats-panel" class="ui-panel stats-panel" role="dialog" aria-label="Panel de Estadísticas" style="display:none;">
+
+      <img id="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
+      <h1>Estadísticas</h1>
+
+      <div class="stats-text">
+        <p>Puntuación más alta: 0</p>
+        <p>Nivel más alto alcanzado: 0</p>
+        <p>Enemigos destruidos: 0</p>
+      </div>
+
+      <div style="width:100%; display:flex; justify-content:center; margin-top:8px;">
+        <button id="stats-back" class="ui-button">Volver</button>
+      </div>
+
+    </div>
+
+    <script type="module" src="./main.js"></script>
+    <img src="./assets/img/star-field.jpg" alt="test" width="300">
+
+  </body>
+</html>
