@@ -1,7 +1,7 @@
 // TODO: clase base de entidad con update/render
 // engine/entity.js
 class Entity {
-  constructor({ x = 0, y = 0, w = 0, h = 0, image = null, anchor = {x:0.5, y:0.5}, visible = true } = {}) {
+  constructor({ x = 0, y = 0, w = 0, h = 0, image = null, anchor = {x:0.5, y:0.5}, visible = true, angle = 0 } = {}) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -9,6 +9,7 @@ class Entity {
     this.image = image; // Image object or canvas
     this.anchor = anchor;
     this.visible = visible;
+    this.angle = angle; // radians
   }
 
   setImage(img) {
@@ -24,9 +25,13 @@ class Entity {
   draw(ctx) {
     if (!this.visible) return;
     if (this.image) {
-      const drawX = this.x - this.w * this.anchor.x;
-      const drawY = this.y - this.h * this.anchor.y;
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      if (this.angle) ctx.rotate(this.angle);
+      const drawX = -this.w * this.anchor.x;
+      const drawY = -this.h * this.anchor.y;
       ctx.drawImage(this.image, drawX, drawY, this.w, this.h);
+      ctx.restore();
     } else {
       // fallback visual
       ctx.fillStyle = '#f0f';

@@ -1,4 +1,5 @@
 import Loader from "../../engine/loader.js";
+import { PlanetEntity, Entity } from "../../engine/entity.js";
 
 export class ArcadeGameState {
 	constructor({ canvas, ctx } = {}) {
@@ -51,16 +52,8 @@ export class ArcadeGameState {
 		const cssW = this.canvas.width / this.dpr;
 		const cssH = this.canvas.height / this.dpr;
 
-		// Tamaño recomendado: 40% del lado menor
-		const size = Math.min(cssW, cssH) * 0.6;
-
-		this.planet = {
-			x: cssW / 2,
-			y: cssH / 2,
-			width: size,
-			height: size,
-			img: this.planetImg
-		};
+		// Crear PlanetEntity usando dimensiones en píxeles CSS
+		this.planet = new PlanetEntity({ canvas: { width: cssW, height: cssH }, image: this.planetImg, scale: 0.6 });
 
 		// Inicializar posición del ratón al centro del planeta por defecto
 		this.mouseX = this.planet.x;
@@ -70,26 +63,30 @@ export class ArcadeGameState {
 	_initAstronaut() {
 		if (!this.astronautImg || !this.planet) return;
 
-		// Ajustar tamaño relativo al planeta
-		const base = Math.min(this.planet.width, this.planet.height);
-		const aScale = 0.13; //%  del tamaño del planeta
+		// Ajustar tamaño relativo al planeta (usar propiedades w/h de PlanetEntity)
+		const base = Math.min(this.planet.w, this.planet.h);
+		const aScale = 0.13; // porcentaje del tamaño del planeta
 		const iw = this.astronautImg.width;
 		const ih = this.astronautImg.height;
 		const scale = (base * aScale) / Math.max(iw, ih);
 
-		this.astronaut = {
-			img: this.astronautImg,
-			width: iw * scale,
-			height: ih * scale,
+		this.astronaut = new Entity({
 			x: this.planet.x,
-			y: this.planet.y
-		};
+			y: this.planet.y,
+			w: iw * scale,
+			h: ih * scale,
+			image: this.astronautImg,
+			anchor: { x: 0.5, y: 0.5 },
+			angle: 0
+		});
 	}
 
 	update(dt) {
 		// Calcular ángulo del astronauta hacia el ratón
 		if (this.planet) {
-			this.astronautAngle = Math.atan2(this.mouseY - this.planet.y, this.mouseX - this.planet.x);
+			const ang = Math.atan2(this.mouseY - this.planet.y, this.mouseX - this.planet.x);
+			this.astronautAngle = ang;
+			if (this.astronaut) this.astronaut.angle = ang;
 		}
 	}
 
@@ -103,39 +100,18 @@ export class ArcadeGameState {
 
 		if (!this.assetsLoaded) return;
 
-		const p = this.planet;
-		const img = p.img;
-
-		// Mantener proporción real de la imagen
-		const iw = img.width;
-		const ih = img.height;
-
-		const scale = Math.min(p.width / iw, p.height / ih);
-		const drawW = iw * scale;
-		const drawH = ih * scale;
-
-		const drawX = p.x - drawW / 2;
-		const drawY = p.y - drawH / 2;
-
 		// Suavizado HD
 		ctx.imageSmoothingEnabled = true;
 		ctx.imageSmoothingQuality = "high";
 
-		// Dibujar planeta centrado
-		ctx.drawImage(img, drawX, drawY, drawW, drawH);
+		// Dibujar planeta usando PlanetEntity.draw
+		if (this.planet) this.planet.draw(ctx);
 
-		// Dibujar astronauta centrado sobre el planeta y rotado hacia el ratón
-		if (this.astronaut && this.astronaut.img) {
-			const a = this.astronaut;
-			// Actualizar posición para que siga el centro del planeta
-			a.x = p.x;
-			a.y = p.y;
-
-			ctx.save();
-			ctx.translate(a.x, a.y);
-			ctx.rotate(this.astronautAngle);
-			ctx.drawImage(a.img, -a.width / 2, -a.height / 2, a.width, a.height);
-			ctx.restore();
+		// Dibujar astronauta centrado sobre el planeta (Entity.draw aplica rotación)
+		if (this.astronaut) {
+			this.astronaut.x = this.planet.x;
+			this.astronaut.y = this.planet.y;
+			this.astronaut.draw(ctx);
 		}
 	}
 
