@@ -2,6 +2,7 @@
 import { MenuState } from "./game/arcade/menu.js";
 import { ArcadeGameState } from "./game/arcade/arcadeGame.js";
 import { StateManager, STATES } from "./engine/stateManager.js";
+import Loader from "./engine/loader.js";
 
 // === Canvas y contexto ===
 const canvas = document.getElementById("game");
@@ -63,7 +64,6 @@ document.addEventListener("click", () => {
 }, { once: true });
 
 
-
 // ===== 🔁 Bucle principal =====
 let last = 0;
 function loop(ts) {
@@ -103,7 +103,6 @@ if (startBtn) {
   startBtn.addEventListener("click", () => {
     stateManager.change(STATES.GAME);
     if (uiPanel) uiPanel.style.display = "none";
-    ensureMusicPlaying();
   });
 }
 
@@ -111,7 +110,6 @@ if (optionsBtn) {
   optionsBtn.addEventListener("click", () => {
     if (uiPanel) uiPanel.style.display = "none";
     if (optionsPanel) optionsPanel.style.display = "flex";
-    ensureMusicPlaying();
   });
 }
 
@@ -124,14 +122,13 @@ if (optBackBtn) {
 
 if (optMuteMusicBtn) {
   optMuteMusicBtn.textContent = bgMusic.muted ? "Musica OFF" : "Musica ON";
-  optMuteMusicBtn.addEventListener("click", () => toggleMusic());
+  optMuteMusicBtn.addEventListener("click", () => {toggleMusic(), ensureMusicPlaying()});
 }
 
 if (historyBtn) {
   historyBtn.addEventListener("click", () => {
     if (uiPanel) uiPanel.style.display = "none";
     if (historyPanel) historyPanel.style.display = "flex";
-    ensureMusicPlaying();
   });
 }
 
@@ -146,7 +143,6 @@ if (statsBtn) {
   statsBtn.addEventListener("click", () => {
     if (uiPanel) uiPanel.style.display = "none";
     if (statsPanel) statsPanel.style.display = "flex";
-    ensureMusicPlaying();
   });
 }
 
@@ -156,9 +152,3 @@ if (statsBackBtn) {
     if (uiPanel) uiPanel.style.display = "flex";
   });
 }
-
-
-// === Permitir reproducir música al primer clic en cualquier parte ===
-//document.addEventListener('click', () => {
-//  ensureMusicPlaying();
-//}, { once: true });
