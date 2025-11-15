@@ -207,8 +207,8 @@ export class ArcadeGameState {
 		
 		this.bullets.push(bullet);
 		
-		// Reproducir sonido de disparo
-		if (this.laserSound) {
+		// Reproducir sonido de disparo (si SFX no está muteado)
+		if (this.laserSound && !window.isSfxMuted()) {
 			this.laserSound.currentTime = 0; // Reiniciar si ya estaba sonando
 			this.laserSound.play().catch(e => console.log('Error reproduciendo audio:', e));
 		}

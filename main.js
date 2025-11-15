@@ -2,7 +2,6 @@
 import { MenuState } from "./game/arcade/menu.js";
 import { ArcadeGameState } from "./game/arcade/arcadeGame.js";
 import { StateManager, STATES } from "./engine/stateManager.js";
-import Loader from "./engine/loader.js";
 
 // === Canvas y contexto ===
 const canvas = document.getElementById("game");
@@ -64,6 +63,36 @@ document.addEventListener("click", () => {
 }, { once: true });
 
 
+// ===== 🔊 Sistema de SFX =====
+let sfxMuted = false;
+
+function isSfxMutedFromStorage() {
+  try { return localStorage.getItem("sfxMuted") === "true"; }
+  catch { return false; }
+}
+
+function setSfxMuted(muted) {
+  sfxMuted = !!muted;
+  try { localStorage.setItem("sfxMuted", muted ? "true" : "false"); } catch {}
+  const btn = document.getElementById("opt-mute-sfx");
+  if (btn) btn.textContent = muted ? "SFX OFF" : "SFX ON";
+}
+
+function toggleSfx() {
+  setSfxMuted(!sfxMuted);
+}
+
+function isSfxMuted() {
+  return sfxMuted;
+}
+
+// Exponer función para que ArcadeGameState pueda verificar el estado
+window.isSfxMuted = isSfxMuted;
+
+// Iniciar estado de SFX según localStorage
+setTimeout(() => setSfxMuted(isSfxMutedFromStorage()), 0);
+
+
 // ===== 🔁 Bucle principal =====
 let last = 0;
 function loop(ts) {
@@ -88,6 +117,7 @@ const optionsBtn = document.getElementById("options-btn");
 const optionsPanel = document.getElementById("options-panel");
 const optBackBtn = document.getElementById("opt-back");
 const optMuteMusicBtn = document.getElementById("opt-mute-music");
+const optMuteSfxBtn = document.getElementById("opt-mute-sfx");
 
 // Panel de historia
 const historyBtn = document.getElementById("history-btn");
@@ -123,6 +153,11 @@ if (optBackBtn) {
 if (optMuteMusicBtn) {
   optMuteMusicBtn.textContent = bgMusic.muted ? "Musica OFF" : "Musica ON";
   optMuteMusicBtn.addEventListener("click", () => {toggleMusic(), ensureMusicPlaying()});
+}
+
+if (optMuteSfxBtn) {
+  optMuteSfxBtn.textContent = sfxMuted ? "SFX OFF" : "SFX ON";
+  optMuteSfxBtn.addEventListener("click", toggleSfx);
 }
 
 if (historyBtn) {
