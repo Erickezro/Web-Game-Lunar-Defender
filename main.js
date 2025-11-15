@@ -31,6 +31,30 @@ stateManager
 // Iniciar en el menú
 stateManager.change(STATES.MENU);
 
+// Cargar y mostrar estadísticas guardadas al iniciar
+function loadAndDisplayStats() {
+  try {
+    const saved = localStorage.getItem("lunarDefenderStats");
+    if (saved) {
+      const stats = JSON.parse(saved);
+      const statsText = document.querySelector(".stats-text");
+      
+      if (statsText) {
+        statsText.innerHTML = `
+          <p>Puntuación más alta: ${stats.highScore || 0}</p>
+          <p>Nivel más alto alcanzado: ${stats.highestLevel || 0}</p>
+          <p>Enemigos destruidos: ${stats.totalEnemiesDestroyed || 0}</p>
+        `;
+      }
+    }
+  } catch (e) {
+    console.error("Error cargando estadísticas:", e);
+  }
+}
+
+// Cargar estadísticas al iniciar
+setTimeout(loadAndDisplayStats, 100);
+
 
 
 // ===== Música de fondo =====
