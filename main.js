@@ -33,7 +33,7 @@ stateManager.change(STATES.MENU);
 
 
 
-// ===== 🎵 Música de fondo =====
+// ===== Música de fondo =====
 const musicSrc = "./assets/audio/Space Fighter Loop.mp3";
 const bgMusic = new Audio(musicSrc);
 bgMusic.loop = true;
@@ -72,7 +72,7 @@ document.addEventListener("click", () => {
 }, { once: true });
 
 
-// ===== 🔊 Sistema de SFX =====
+// ==== Sistema de SFX =====
 let sfxMuted = false;
 
 function isSfxMutedFromStorage() {
@@ -102,7 +102,7 @@ window.isSfxMuted = isSfxMuted;
 setTimeout(() => setSfxMuted(isSfxMutedFromStorage()), 0);
 
 
-// ===== 🔁 Bucle principal =====
+// ===== Bucle principal =====
 let last = 0;
 function loop(ts) {
   const dt = (ts - last) / 1000;
@@ -117,7 +117,7 @@ requestAnimationFrame(loop);
 
 
 
-// ===== 🧩 Conexión con la interfaz HTML (UI) =====
+// ===== Conexión con la interfaz HTML (UI) =====
 const uiPanel = document.getElementById("ui-panel");
 const startBtn = document.getElementById("start-btn");
 const optionsBtn = document.getElementById("options-btn");
@@ -127,6 +127,11 @@ const optionsPanel = document.getElementById("options-panel");
 const optBackBtn = document.getElementById("opt-back");
 const optMuteMusicBtn = document.getElementById("opt-mute-music");
 const optMuteSfxBtn = document.getElementById("opt-mute-sfx");
+const optControlsBtn = document.getElementById("opt-controls");
+
+// Panel de controles
+const controlsPanel = document.getElementById("controls-panel");
+const controlsBackBtn = document.getElementById("controls-back");
 
 // Panel de historia
 const historyBtn = document.getElementById("history-btn");
@@ -169,6 +174,20 @@ if (optMuteSfxBtn) {
   optMuteSfxBtn.addEventListener("click", toggleSfx);
 }
 
+if (optControlsBtn) {
+  optControlsBtn.addEventListener("click", () => {
+    if (optionsPanel) optionsPanel.style.display = "none";
+    if (controlsPanel) controlsPanel.style.display = "flex";
+  });
+}
+
+if (controlsBackBtn) {
+  controlsBackBtn.addEventListener("click", () => {
+    if (controlsPanel) controlsPanel.style.display = "none";
+    if (optionsPanel) optionsPanel.style.display = "flex";
+  });
+}
+
 if (historyBtn) {
   historyBtn.addEventListener("click", () => {
     if (uiPanel) uiPanel.style.display = "none";
@@ -197,7 +216,7 @@ if (statsBackBtn) {
   });
 }
 
-// ===== ⏸️ Entrada de teclado global (Pausa) =====
+// ===== Entrada de teclado global (Pausa) =====
 // Reenvía eventos de teclado al estado actual para que decida qué hacer
 document.addEventListener("keydown", (ev) => stateManager.handleKeyDown(ev));
 document.addEventListener("keyup", (ev) => stateManager.handleKeyUp(ev));

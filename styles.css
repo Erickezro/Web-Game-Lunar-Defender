@@ -69,6 +69,7 @@ canvas {
   max-width: 90vw;
   gap: 12px;
   padding: 30px;
+  border: 2px solid #a7703d;
 }
 
 #options-panel h1 {
@@ -88,6 +89,7 @@ canvas {
   max-width: 90vw;
   gap: 12px;
   padding: 30px;
+  border: 2px solid #a7703d;
 }
 
 #history-panel h1 {
@@ -111,6 +113,7 @@ canvas {
   max-width: 90vw;
   gap: 12px;
   padding: 30px;
+  border: 2px solid #a7703d;
 }
 
 #stats-panel h1 {
@@ -185,4 +188,62 @@ canvas {
   color: #ffd700;
   font-size: 28px;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Panel de controles */
+.controls-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  max-width: 90vw;
+  background: rgba(10, 10, 20, 0.85);
+  color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 999;
+  pointer-events: auto;
+  border: 2px solid #a7703d;
+}
+
+.controls-panel h2 {
+  margin: 0;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
+  color: #a7703d;
+  text-align: center;
+}
+
+.controls-panel p {
+  font: normal 18px/1.5 "Open Sans", sans-serif;
+  color: #fff;
+  margin: 8px 0;
+  text-align: center;
+}
+
+/* Estilos específicos para el panel de Controles */
+.opt-controls {
+  display: none; /* se mostrará vía JS */
+  width: 800px;
+  max-width: 90vw;
+  gap: 12px;
+  padding: 30px;
+}
+
+#opt-controls h1 {
+  margin: 0;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
+  color: #a7703d;
+  text-align: center;
+}
+
+#opt-controls p {
+  font: normal 16px/1.5 "Open Sans", sans-serif;
+  color: #ddd;
+  text-align: justify;
 }
