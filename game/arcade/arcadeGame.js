@@ -1,6 +1,33 @@
 import Loader from "../../engine/loader.js";
 import { PlanetEntity, Entity } from "../../engine/entity.js";
 
+// Clase para los disparos
+class Bullet extends Entity {
+	constructor({ x, y, targetX, targetY, speed = 500, image }) {
+		super({ x, y, w: 0, h: 0, image, anchor: { x: 0.5, y: 0.5 } });
+		
+		// Calcular dirección normalizada
+		const dx = targetX - x;
+		const dy = targetY - y;
+		const dist = Math.sqrt(dx * dx + dy * dy);
+		
+		this.vx = (dx / dist) * speed;
+		this.vy = (dy / dist) * speed;
+		
+		// Ángulo hacia donde apunta el disparo
+		this.angle = Math.atan2(dy, dx);
+		
+		this.active = true;
+	}
+	
+	update(dt) {
+		if (!this.active) return;
+		
+		this.x += this.vx * dt;
+		this.y += this.vy * dt;
+	}
+}
+
 export class ArcadeGameState {
 	constructor({ canvas, ctx } = {}) {
 		this.canvas = canvas;
@@ -27,12 +54,16 @@ export class ArcadeGameState {
 
 		const manifest = [
 			this.loader.addImage("planet05", "./assets/img/planet05.png"),
-			this.loader.addImage("astronaut", "./assets/img/spaceAstronauts_012.png")
+			this.loader.addImage("astronaut", "./assets/img/spaceAstronauts_012.png"),
+			this.loader.addImage("shootEffect", "./assets/img/shootEffect.png"),
+			this.loader.addAudio("laserSmall", "./assets/audio/laserSmall_000.ogg")
 		];
 
 		this.loader.load(manifest).then(() => {
 			this.planetImg = this.loader.get("planet05");
 			this.astronautImg = this.loader.get("astronaut");
+			this.shootEffectImg = this.loader.get("shootEffect");
+			this.laserSound = this.loader.get("laserSmall");
 			this._initPlanet();
 			this._initAstronaut();
 			this.assetsLoaded = true;
@@ -43,8 +74,13 @@ export class ArcadeGameState {
 		this.mouseY = 0;
 		this.astronautAngle = 0;
 
+		// Array para almacenar los disparos activos
+		this.bullets = [];
+
 		this._onMouseMove = this._onMouseMove.bind(this);
+		this._onClick = this._onClick.bind(this);
 		this.canvas.addEventListener("mousemove", this._onMouseMove);
+		this.canvas.addEventListener("click", this._onClick);
 	}
 
 	// Configura tamaño y posición
@@ -88,6 +124,21 @@ export class ArcadeGameState {
 			this.astronautAngle = ang;
 			if (this.astronaut) this.astronaut.angle = ang;
 		}
+		
+		// Actualizar todos los disparos
+		const cssW = this.canvas.width / this.dpr;
+		const cssH = this.canvas.height / this.dpr;
+		
+		for (let i = this.bullets.length - 1; i >= 0; i--) {
+			const bullet = this.bullets[i];
+			bullet.update(dt);
+			
+			// Eliminar disparos fuera de pantalla
+			if (bullet.x < -100 || bullet.x > cssW + 100 || 
+			    bullet.y < -100 || bullet.y > cssH + 100) {
+				this.bullets.splice(i, 1);
+			}
+		}
 	}
 
 	render(ctx) {
@@ -113,6 +164,11 @@ export class ArcadeGameState {
 			this.astronaut.y = this.planet.y;
 			this.astronaut.draw(ctx);
 		}
+		
+		// Dibujar todos los disparos
+		for (const bullet of this.bullets) {
+			bullet.draw(ctx);
+		}
 	}
 
 	_onMouseMove(e) {
@@ -120,5 +176,41 @@ export class ArcadeGameState {
 		// usar coordenadas CSS (clientX/Y) - el canvas ya tiene transform aplicada
 		this.mouseX = e.clientX - rect.left;
 		this.mouseY = e.clientY - rect.top;
+	}
+	
+	_onClick(e) {
+		if (!this.assetsLoaded || !this.planet || !this.shootEffectImg) return;
+		
+		const rect = this.canvas.getBoundingClientRect();
+		const clickX = e.clientX - rect.left;
+		const clickY = e.clientY - rect.top;
+		
+		// Crear nuevo disparo desde la posición del astronauta hacia el click
+		const bullet = new Bullet({
+			x: this.planet.x,
+			y: this.planet.y,
+			targetX: clickX,
+			targetY: clickY,
+			speed: 500,
+			image: this.shootEffectImg
+		});
+		
+		// Ajustar tamaño del disparo (similar al astronauta)
+		const base = Math.min(this.planet.w, this.planet.h);
+		const bulletScale = 0.06;
+		const iw = this.shootEffectImg.width;
+		const ih = this.shootEffectImg.height;
+		const scale = (base * bulletScale) / Math.max(iw, ih);
+		
+		bullet.w = iw * scale;
+		bullet.h = ih * scale;
+		
+		this.bullets.push(bullet);
+		
+		// Reproducir sonido de disparo
+		if (this.laserSound) {
+			this.laserSound.currentTime = 0; // Reiniciar si ya estaba sonando
+			this.laserSound.play().catch(e => console.log('Error reproduciendo audio:', e));
+		}
 	}
 }
