@@ -5,12 +5,13 @@
     background-size: cover;
     overflow: hidden;
   }
-  canvas {
+
+canvas {
     display: block;
     width: 100vw;
     height: 100vh;
     background: transparent; 
-  }
+}
 
 /* Estilos para el cuadro/panel UI */
 .ui-panel {
@@ -123,4 +124,65 @@
   font: normal 16px/1.5 "Open Sans", sans-serif;
   color: #ddd;
   text-align: justify;
+}
+
+
+/* Cuadro de vida en la esquina superior izquierda */
+.health-display {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(10, 10, 20, 0.85);
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 1000;
+  pointer-events: none;
+  border: 2px solid #a7703d;
+  display: none; /* Oculto por defecto, se muestra cuando el juego inicia */
+}
+
+.health-label {
+  color: #a7703d;
+  margin-right: 10px;
+}
+
+.health-value {
+  color: #00ff00;
+  font-size: 28px;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* Cuadro de score en la esquina superior derecha */
+.score-display{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(10, 10, 20, 0.85);
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 1000;
+  pointer-events: none;
+  border: 2px solid #a7703d;
+  display: none; /* Oculto por defecto, se muestra cuando el juego inicia */
+}
+
+.score-label {
+  color: #a7703d;
+  margin-right: 10px;
+}
+
+.score-value {
+  color: #ffd700;
+  font-size: 28px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }

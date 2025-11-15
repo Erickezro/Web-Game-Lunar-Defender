@@ -81,6 +81,29 @@ export class ArcadeGameState {
 		this._onClick = this._onClick.bind(this);
 		this.canvas.addEventListener("mousemove", this._onMouseMove);
 		this.canvas.addEventListener("click", this._onClick);
+
+		// Sistema de vida
+		this.health = 100;
+		this.maxHealth = 100;
+		this.healthDisplay = document.getElementById("health-display");
+		this.healthValue = document.getElementById("health-value");
+		
+		// Mostrar el cuadro de vida cuando inicia el juego
+		if (this.healthDisplay) {
+			this.healthDisplay.style.display = "block";
+		}
+		this.updateHealthDisplay();
+
+		// Sistema de score
+		this.score = 0;
+		this.scoreDisplay = document.getElementById("score-display");
+		this.scoreValue = document.getElementById("score-value");
+		
+		// Mostrar el cuadro de score cuando inicia el juego
+		if (this.scoreDisplay) {
+			this.scoreDisplay.style.display = "block";
+		}
+		this.updateScoreDisplay();
 	}
 
 	// Configura tamaño y posición
@@ -115,6 +138,68 @@ export class ArcadeGameState {
 			anchor: { x: 0.5, y: 0.5 },
 			angle: 0
 		});
+	}
+
+	// Método para actualizar la visualización de vida
+	updateHealthDisplay() {
+		if (this.healthValue) {
+			this.healthValue.textContent = Math.max(0, this.health);
+			
+			// Cambiar color según la vida restante
+			const healthPercent = this.health / this.maxHealth;
+			if (healthPercent > 0.6) {
+				this.healthValue.style.color = "#00ff00";
+				this.healthValue.style.textShadow = "0 0 10px rgba(0, 255, 0, 0.5)";
+			} else if (healthPercent > 0.3) {
+				this.healthValue.style.color = "#ffaa00";
+				this.healthValue.style.textShadow = "0 0 10px rgba(255, 170, 0, 0.5)";
+			} else {
+				this.healthValue.style.color = "#ff0000";
+				this.healthValue.style.textShadow = "0 0 10px rgba(255, 0, 0, 0.5)";
+			}
+		}
+	}
+	
+	// Método para recibir daño
+	takeDamage(amount) {
+		this.health = Math.max(0, this.health - amount);
+		this.updateHealthDisplay();
+		
+		if (this.health <= 0) {
+			// Aquí puedes agregar lógica para cuando el jugador muera
+			console.log("Game Over!");
+		}
+	}
+	
+	// Método para curar/restaurar vida
+	heal(amount) {
+		this.health = Math.min(this.maxHealth, this.health + amount);
+		this.updateHealthDisplay();
+	}
+
+	// Método para actualizar la visualización del score
+	updateScoreDisplay() {
+		if (this.scoreValue) {
+			this.scoreValue.textContent = this.score;
+		}
+	}
+	
+	// Método para añadir puntos al score
+	addScore(points) {
+		this.score += points;
+		this.updateScoreDisplay();
+	}
+	
+	// Método para establecer el score directamente
+	setScore(value) {
+		this.score = value;
+		this.updateScoreDisplay();
+	}
+	
+	// Método para reiniciar el score a 0
+	resetScore() {
+		this.score = 0;
+		this.updateScoreDisplay();
 	}
 
 	update(dt) {
