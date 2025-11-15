@@ -175,6 +175,21 @@ export class ArcadeGameState {
 	heal(amount) {
 		this.health = Math.min(this.maxHealth, this.health + amount);
 		this.updateHealthDisplay();
+
+		// Pausa
+		this.paused = false;
+	}
+
+	// ====== ⏸️ Pausa ======
+	onKeyDown(ev) {
+		// Toggle con 'P' o 'p'
+		if (ev.key === 'p' || ev.key === 'P') {
+			this.togglePause();
+		}
+	}
+
+	togglePause() {
+		this.paused = !this.paused;
 	}
 
 	// Método para actualizar la visualización del score
@@ -203,6 +218,7 @@ export class ArcadeGameState {
 	}
 
 	update(dt) {
+		if (this.paused) return; // detener la lógica mientras está en pausa
 		// Calcular ángulo del astronauta hacia el ratón
 		if (this.planet) {
 			const ang = Math.atan2(this.mouseY - this.planet.y, this.mouseX - this.planet.x);
@@ -253,6 +269,21 @@ export class ArcadeGameState {
 		// Dibujar todos los disparos
 		for (const bullet of this.bullets) {
 			bullet.draw(ctx);
+		}
+
+		// Overlay de pausa
+		if (this.paused) {
+			ctx.save();
+			ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+			ctx.fillRect(0, 0, cssW, cssH);
+			ctx.fillStyle = "#ffffff";
+			ctx.font = "bold 48px Open Sans, sans-serif";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			ctx.fillText("Pausa", cssW / 2, cssH / 2);
+			ctx.font = "normal 20px Open Sans, sans-serif";
+			ctx.fillText("Pulsa P para continuar", cssW / 2, cssH / 2 + 40);
+			ctx.restore();
 		}
 	}
 

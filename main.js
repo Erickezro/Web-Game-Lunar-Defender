@@ -10,13 +10,22 @@ const ctx = canvas.getContext("2d");
 // === Administrador de estados ===
 const stateManager = new StateManager({ canvas, ctx });
 
+// Referencias para gestionar estados
+let currentMenuState = null;
+
 // Registrar los estados del juego
 stateManager
-  .register(STATES.MENU, ({ canvas, ctx }) => new MenuState({
-    canvas,
-    ctx,
-    startCallback: () => stateManager.change(STATES.GAME),
-  }))
+  .register(STATES.MENU, ({ canvas, ctx }) => {
+    currentMenuState = new MenuState({
+      canvas,
+      ctx,
+      startCallback: () => {
+        if (currentMenuState) currentMenuState.hide();
+        stateManager.change(STATES.GAME);
+      },
+    });
+    return currentMenuState;
+  })
   .register(STATES.GAME, ({ canvas, ctx }) => new ArcadeGameState({ canvas, ctx }));
 
 // Iniciar en el menú
@@ -131,8 +140,8 @@ const statsBackBtn = document.getElementById("stats-back");
 
 if (startBtn) {
   startBtn.addEventListener("click", () => {
+    if (currentMenuState) currentMenuState.hide();
     stateManager.change(STATES.GAME);
-    if (uiPanel) uiPanel.style.display = "none";
   });
 }
 
@@ -187,3 +196,8 @@ if (statsBackBtn) {
     if (uiPanel) uiPanel.style.display = "flex";
   });
 }
+
+// ===== ⏸️ Entrada de teclado global (Pausa) =====
+// Reenvía eventos de teclado al estado actual para que decida qué hacer
+document.addEventListener("keydown", (ev) => stateManager.handleKeyDown(ev));
+document.addEventListener("keyup", (ev) => stateManager.handleKeyUp(ev));
