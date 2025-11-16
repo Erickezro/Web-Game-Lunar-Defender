@@ -540,7 +540,9 @@ export class ArcadeGameState {
 		levelUpMsg.style.zIndex = "9999";
 		levelUpMsg.style.pointerEvents = "none";
 		levelUpMsg.style.animation = "fadeInOut 2s ease-in-out";
+		levelUpMsg.style.fontFamily = "'Open Sans', sans-serif";
 		levelUpMsg.textContent = `¡NIVEL ${this.level}!`;
+
 		
 		document.body.appendChild(levelUpMsg);
 		
@@ -653,8 +655,8 @@ export class ArcadeGameState {
 		const distance = Math.sqrt(dx * dx + dy * dy);
 		
 		// Radio de colisión (promedio de ancho y alto / 2)
-		const radius1 = (entity1.w + entity1.h) / 4;
-		const radius2 = (entity2.w + entity2.h) / 4;
+		const radius1 = (entity1.w + entity1.h) / 5;
+		const radius2 = (entity2.w + entity2.h) / 5;
 		
 		return distance < (radius1 + radius2);
 	}

@@ -1,13 +1,9 @@
-/* Importar fuente desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
-
-html, body {
+ html, body {
     margin: 0;
     height: 100%;
     background: url("./assets/img/star-field.jpg") no-repeat center center fixed;
     background-size: cover;
     overflow: hidden;
-    font-family: 'Orbitron', sans-serif;
   }
 
 canvas {
@@ -58,14 +54,9 @@ canvas {
   padding:       20px 45px;
   color:         #ffffff;
   display:       inline-block;
-  font-family:   'Orbitron', sans-serif;
-  font-weight:   700;
-  font-size:     26px;
-  line-height:   1;
+  font:          normal bold 26px/1 "Open Sans", sans-serif;
   text-align:    center;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .ui-button:hover { filter: brightness(1.05); }
@@ -83,26 +74,13 @@ canvas {
 
 #options-panel h1 {
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 32px;
-  line-height: 1;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
   color: #a7703d;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .options-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-.options-buttons .ui-button { 
-  padding: 12px 18px; 
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 1;
-  border-radius:10px; 
-}
+.options-buttons .ui-button { padding: 12px 18px; font: normal bold 16px/1 "Open Sans", sans-serif; border-radius:10px; }
 
 /* Estilos específicos para el panel de Historia */
 .history-panel {
@@ -116,22 +94,13 @@ canvas {
 
 #history-panel h1 {
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 32px;
-  line-height: 1;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
   color: #a7703d;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 #history-panel p {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
+  font: normal 16px/1.5 "Open Sans", sans-serif;
   color: #ddd;
   text-align: justify;
 }
@@ -149,25 +118,15 @@ canvas {
 
 #stats-panel h1 {
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 32px;
-  line-height: 1;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
   color: #a7703d;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 #stats-panel p {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.5;
-  color: #fff;
-  text-align: center;
-  letter-spacing: 1px;
+  font: normal 16px/1.5 "Open Sans", sans-serif;
+  color: #ddd;
+  text-align: justify;
 }
 
 
@@ -181,7 +140,7 @@ canvas {
   padding: 15px 25px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-weight: bold;
   z-index: 1000;
@@ -191,20 +150,13 @@ canvas {
 }
 
 .health-label {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
   color: #a7703d;
   margin-right: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .health-value {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 28px;
   color: #00ff00;
+  font-size: 28px;
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
@@ -218,7 +170,7 @@ canvas {
   padding: 15px 25px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-weight: bold;
   z-index: 1000;
@@ -228,20 +180,13 @@ canvas {
 }
 
 .score-label {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
   color: #a7703d;
   margin-right: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .score-value {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 28px;
   color: #ffd700;
+  font-size: 28px;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
@@ -269,26 +214,16 @@ canvas {
 
 .controls-panel h2 {
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 28px;
-  line-height: 1;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
   color: #a7703d;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .controls-panel p {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.5;
+  font: normal 18px/1.5 "Open Sans", sans-serif;
   color: #fff;
   margin: 8px 0;
   text-align: center;
-  letter-spacing: 0.5px;
 }
 
 /* Estilos específicos para el panel de Controles */
@@ -302,129 +237,13 @@ canvas {
 
 #opt-controls h1 {
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 28px;
-  line-height: 1;
+  font: normal bold 28px/1 "Open Sans", sans-serif;
   color: #a7703d;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 #opt-controls p {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
+  font: normal 16px/1.5 "Open Sans", sans-serif;
   color: #ddd;
   text-align: justify;
-}
-
-/* Display de nivel en la parte superior central */
-.level-display {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(10, 10, 20, 0.85);
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  display: none;
-  z-index: 998;
-  pointer-events: none;
-  border: 2px solid #ffaa00;
-}
-
-.level-label {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1;
-  color: #ffaa00;
-  margin-right: 8px;
-  text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.level-value {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffff00;
-  text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
-}
-
-/* Animación para mensaje de nivel */
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-  }
-  20% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-  80% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-}
-
-/* Estilos para el panel de Game Over */
-.gameover-panel {
-  display: none;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  max-width: 90vw;
-  background: rgba(10, 10, 20, 0.95);
-  color: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  z-index: 9999;
-  pointer-events: auto;
-  border: 3px solid #ff4444;
-}
-
-.gameover-stats {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.gameover-stats p {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.5;
-  color: #fff;
-  margin: 10px 0;
-  letter-spacing: 1px;
-}
-
-/* Estilos para el título de Game Over */
-.gameover-panel h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 48px;
-  color: #ff4444;
-  margin: 20px 0;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  text-shadow: 0 0 20px rgba(255, 68, 68, 0.8), 0 0 40px rgba(255, 68, 68, 0.5);
 }
