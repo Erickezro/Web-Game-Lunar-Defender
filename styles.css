@@ -247,3 +247,110 @@ canvas {
   color: #ddd;
   text-align: justify;
 }
+
+/* Display de nivel en la parte superior central */
+.level-display {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 10, 20, 0.85);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  display: none;
+  z-index: 998;
+  pointer-events: none;
+  border: 2px solid #ffaa00;
+}
+
+.level-label {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  color: #ffaa00;
+  margin-right: 8px;
+  text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.level-value {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+  color: #ffff00;
+  text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+/* Animación para mensaje de nivel */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+/* Estilos para el panel de Game Over */
+.gameover-panel {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  max-width: 90vw;
+  background: rgba(10, 10, 20, 0.95);
+  color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 9999;
+  pointer-events: auto;
+  border: 3px solid #ff4444;
+}
+
+.gameover-stats {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.gameover-stats p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #fff;
+  margin: 10px 0;
+  letter-spacing: 1px;
+}
+
+/* Estilos para el título de Game Over */
+.gameover-panel h1 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+  color: #ff4444;
+  margin: 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.8), 0 0 40px rgba(255, 68, 68, 0.5);
+}

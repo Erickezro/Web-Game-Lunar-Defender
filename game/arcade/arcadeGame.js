@@ -297,7 +297,6 @@ export class ArcadeGameState {
 	// Método para Game Over
 	_triggerGameOver() {
 		this.gameOver = true;
-		this.paused = true;
 		
 		// Guardar estadísticas
 		this._saveStats();
@@ -474,7 +473,7 @@ export class ArcadeGameState {
 		this.paused = false;
 	}
 
-	// ====== ⏸️ Pausa ======
+	// ====== Pausa ======
 	onKeyDown(ev) {
 		// Toggle con 'P' o 'p'
 		if (ev.key === 'p' || ev.key === 'P') {
