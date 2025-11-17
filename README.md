@@ -1,25 +1,21 @@
 # 🌙 LUNAR DEFENDER
 
-## Bienvenidos a mi proyecto
-
-Este proyecto ha sido realizado por **Correa Adrián** y **Romero Erick**.  
 ![Lunar Defender Logo](./assets/img/lunar-defender-logo.png)
 
-Un juego arcade de defensa espacial desarrollado con **HTML5 Canvas** y **JavaScript vanilla**. Defiende la luna de oleadas infinitas de enemigos espaciales en este emocionante shooter de acción.
+Un juego arcade de defensa espacial desarrollado con HTML5 Canvas y JavaScript vanilla. Defiende la luna de oleadas infinitas de enemigos espaciales en este emocionante shooter de acción.
 
 ---
 
 ## 📋 Tabla de Contenidos
 
-- [Descripción](#descripción)
-- [Características](#características)
-- [Requisitos](#requisitos)
-- [Instalación y Ejecución](#instalación-y-ejecución)
-- [Controles](#controles)
-- [Mecánicas del Juego](#mecánicas-del-juego)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Tecnologías Utilizadas](#tecnologías-utilizadas)
-
+- [Descripción](#-descripción)
+- [Características](#-características)
+- [Requisitos](#-requisitos)
+- [Instalación y Ejecución](#-instalación-y-ejecución)
+- [Controles](#-controles)
+- [Mecánicas del Juego](#-mecánicas-del-juego)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Tecnologías Utilizadas](#-tecnologías-utilizadas)
 
 ---
 
@@ -37,7 +33,7 @@ Un juego arcade de defensa espacial desarrollado con **HTML5 Canvas** y **JavaSc
 ## ✨ Características
 
 ### Funcionalidad Principal
-- ✅ **Game Loop optimizado** con `RequestAnimationFrame`
+- ✅ **Game Loop optimizado** con RequestAnimationFrame
 - ✅ **Sistema de Estados:** Menú, Juego, Pausa, Game Over
 - ✅ **Loader de Assets** asíncrono (imágenes y audio)
 - ✅ **High DPI Support** para pantallas retina
@@ -65,8 +61,8 @@ Un juego arcade de defensa espacial desarrollado con **HTML5 Canvas** y **JavaSc
   - Preferencias de audio
 
 ### UI/UX
-- 🎨 **Interfaz Moderna:** Diseño futurista con fuente `Orbitron`
-- 📊 **HUD en Tiempo Real:** Muestra la vida, puntuación y nivel
+- 🎨 **Interfaz Moderna:** Diseño futurista con fuente Orbitron
+- 📊 **HUD en Tiempo Real:** Vida, Score y Nivel
 - 🎛️ **Menús Completos:** Principal, Opciones, Estadísticas, Historia, Controles
 - 🏆 **Panel de Game Over:** Muestra estadísticas finales
 
@@ -96,8 +92,23 @@ Un juego arcade de defensa espacial desarrollado con **HTML5 Canvas** y **JavaSc
 git clone https://github.com/Erickezro/Web-Game-Lunar-Defender.git
 cd Web-Game-Lunar-Defender
 
+<<<<<<< HEAD
+=======
+```
+
+### Opción 2: Abrir Directamente
+
+```bash
+>>>>>>> b3fb6a5 (Actualización de README.md y index.html, y agregados directorios de Capturas y video)
 # Simplemente abrir index.html en tu navegador
 # Nota: Algunos navegadores pueden bloquear la carga de assets por CORS
+```
+
+### Opción 3: Live Server (VS Code)
+
+1. Instalar extensión "Live Server" en VS Code
+2. Click derecho en `index.html`
+3. Seleccionar "Open with Live Server"
 
 ---
 
@@ -105,21 +116,21 @@ cd Web-Game-Lunar-Defender
 
 ### Controles del Juego
 
-| Acción                | Control         |
-|-----------------------|-----------------|
-| **Apuntar**           | Mover el mouse  |
-| **Disparar**          | Click izquierdo |
-| **Pausar/Reanudar**   | Tecla `P`       |
+| Acción | Control |
+|--------|---------|
+| **Apuntar** | Mover el mouse |
+| **Disparar** | Click izquierdo |
+| **Pausar/Reanudar** | Tecla `P` |
 
 ### Navegación de Menús
 
-| Acción                | Control          |
-|-----------------------|------------------|
-| **Seleccionar opción**| Click en botones |
-| **Iniciar juego**     | Botón "Iniciar"  |
-| **Ver opciones**      | Botón "Opciones" |
-| **Ver estadísticas**  | Botón "Stats"    |
-| **Ver historia**      | Botón "Historia" |
+| Acción | Control |
+|--------|---------|
+| **Seleccionar opción** | Click en botones |
+| **Iniciar juego** | Botón "Iniciar" |
+| **Ver opciones** | Botón "Opciones" |
+| **Ver estadísticas** | Botón "Stats" |
+| **Ver historia** | Botón "Historia" |
 
 ### Opciones de Audio
 
@@ -184,6 +195,53 @@ Cuando la vida llega a 0:
 
 ## 📁 Estructura del Proyecto
 
+```
+Web-Game-Lunar-Defender/
+├── index.html              # Página principal del juego
+├── main.js                 # Punto de entrada, configuración inicial
+├── styles.css              # Estilos globales y UI
+├── README.md               # Este archivo
+│
+├── engine/                 # Motor del juego (reutilizable)
+│   ├── entity.js           # Clase base Entity y PlanetEntity
+│   ├── loader.js           # Cargador de assets (imágenes/audio)
+│   └── stateManager.js     # Gestor de estados del juego
+│
+├── game/                   # Lógica específica del juego
+│   └── arcade/
+│       ├── arcadeGame.js   # Estado principal del juego (lógica)
+│       └── menu.js         # Estado del menú principal
+│
+└── assets/                 # Recursos multimedia
+    ├── audio/              # Archivos de sonido
+    │   ├── Space Fighter Loop.mp3    # Música de fondo
+    │   └── laserSmall_000.ogg        # Efecto de disparo
+    │
+    └── img/                # Imágenes del juego
+        ├── lunar-defender-logo.png   # Logo del juego
+        ├── planet05.png              # Imagen de la luna
+        ├── spaceAstronauts_012.png   # Sprite del jugador
+        ├── shootEffect.png           # Efecto de disparo
+        ├── star-field.jpg            # Fondo espacial
+        ├── ship_A.png - ship_F.png   # Naves enemigas (6)
+        ├── enemy_E.png               # Nave enemiga adicional
+        ├── meteor_*.png              # Meteoritos (4 variantes)
+        └── satellite_*.png           # Satélites (4 variantes)
+```
+
+### Arquitectura del Código
+
+#### Engine (Motor Reutilizable)
+- **entity.js:** Sistema de entidades base con transformaciones
+- **loader.js:** Carga asíncrona de recursos
+- **stateManager.js:** Máquina de estados con stack
+
+#### Game (Lógica Específica)
+- **arcadeGame.js:** Lógica principal del juego
+  - Clase `Enemy`: Enemigos con IA básica
+  - Clase `Bullet`: Sistema de proyectiles
+  - Clase `ArcadeGameState`: Estado del juego
+- **menu.js:** Gestión del menú principal
 
 ---
 
