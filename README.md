@@ -1,5 +1,6 @@
 # 🌙 LUNAR DEFENDER
 
+### Realizado por: Correa Adrian y Romero Erick
 ![Lunar Defender Logo](./assets/img/lunar-defender-logo.png)
 
 Un juego arcade de defensa espacial desarrollado con HTML5 Canvas y JavaScript vanilla. Defiende la luna de oleadas infinitas de enemigos espaciales en este emocionante shooter de acción.
