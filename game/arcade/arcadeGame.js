@@ -107,6 +107,8 @@ export class ArcadeGameState {
 			this.loader.addImage("astronaut", "./assets/img/spaceAstronauts_012.png"),
 			this.loader.addImage("shootEffect", "./assets/img/shootEffect.png"),
 			this.loader.addAudio("laserSmall", "./assets/audio/laserSmall_000.ogg"),
+			this.loader.addAudio("levelUp", "./assets/audio/level-up.m4a"),
+			this.loader.addAudio("gameOverSound", "./assets/audio/game-over-voice.mp3"),
 			
 			// Imágenes de enemigos - naves
 			this.loader.addImage("ship_A", "./assets/img/ship_A.png"),
@@ -135,6 +137,9 @@ export class ArcadeGameState {
 			this.astronautImg = this.loader.get("astronaut");
 			this.shootEffectImg = this.loader.get("shootEffect");
 			this.laserSound = this.loader.get("laserSmall");
+			this.levelUpSound = this.loader.get("levelUp");
+			if (this.levelUpSound) this.levelUpSound.volume = 0.95;
+			this.gameOverSound = this.loader.get("gameOverSound");
 			
 			// Guardar imágenes de enemigos en arrays
 			this.shipImages = [
@@ -297,6 +302,16 @@ export class ArcadeGameState {
 	// Método para Game Over
 	_triggerGameOver() {
 		this.gameOver = true;
+
+		// Reproducir voz de Game Over si SFX no están muteados
+		if (this.gameOverSound && typeof window !== 'undefined' && !window.isSfxMuted()) {
+			try {
+				this.gameOverSound.currentTime = 0;
+				this.gameOverSound.play();
+			} catch (e) {
+				console.log("Error reproduciendo game-over:", e);
+			}
+		}
 		
 		// Guardar estadísticas
 		this._saveStats();
@@ -542,6 +557,16 @@ export class ArcadeGameState {
 		levelUpMsg.style.fontFamily = "'Open Sans', sans-serif";
 		levelUpMsg.textContent = `¡NIVEL ${this.level}!`;
 
+		// Reproducir sonido de level-up (si existe y SFX no muteados)
+		if (this.levelUpSound && !window.isSfxMuted()) {
+			try {
+				this.levelUpSound.currentTime = 0;
+				this.levelUpSound.play();
+			} catch(e) {
+				console.log("Error reproduciendo level-up:", e);
+			}
+		}
+
 		
 		document.body.appendChild(levelUpMsg);
 		
@@ -551,18 +576,6 @@ export class ArcadeGameState {
 				levelUpMsg.parentNode.removeChild(levelUpMsg);
 			}
 		}, 2000);
-	}
-	
-	// Método para establecer el score directamente
-	setScore(value) {
-		this.score = value;
-		this.updateScoreDisplay();
-	}
-	
-	// Método para reiniciar el score a 0
-	resetScore() {
-		this.score = 0;
-		this.updateScoreDisplay();
 	}
 
 	update(dt) {

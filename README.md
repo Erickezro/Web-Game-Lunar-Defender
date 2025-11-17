@@ -263,7 +263,6 @@ Web-Game-Lunar-Defender/
 - **RequestAnimationFrame:** Game loop optimizado
 
 ### Librerías
-- **Google Fonts:** Fuente Orbitron (futurista)
 - **Vanilla JS:** Sin frameworks externos
 
 ### Herramientas de Desarrollo
@@ -276,13 +275,13 @@ Web-Game-Lunar-Defender/
 ## 🎨 Assets y Recursos
 
 ### Imágenes
-- **Sprites:** 28 imágenes PNG con transparencia
+- **Sprites:** 20 imágenes PNG con transparencia
 - **Fondo:** Imagen de campo estelar
 - **Logo:** Diseño personalizado
 
 ### Audio
 - **Música:** Loop espacial (MP3)
-- **SFX:** Efecto láser (OGG)
+- **SFX:** Efecto láser (OGG), Audio de level-up (M4A) y Voz de Game Over (MP3)
 
 ### Fuentes
 - **Orbitron:** Fuente futurista de Google Fonts
@@ -325,7 +324,6 @@ Web-Game-Lunar-Defender/
 
 ### Bonus (Opcional)
 - [ ] Modo multijugador cooperativo
-- [ ] Minimapa
 - [ ] PWA (Progressive Web App)
 - [ ] Diferentes planetas para defender
 

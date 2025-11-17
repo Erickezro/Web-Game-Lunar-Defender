@@ -33,28 +33,6 @@ export class StateManager {
     return this._current;
   }
 
-  // Apila un estado (útil para PAUSE sobre GAME)
-  push(nameOrState, payload = {}) {
-    const next = typeof nameOrState === 'string'
-      ? this._create(nameOrState, payload)
-      : nameOrState;
-
-    if (this._current?.onPause) this._current.onPause();
-    this._stack.push(this._current);
-    this._current = next;
-    if (this._current?.onEnter) this._current.onEnter(payload);
-    return this._current;
-  }
-
-  // Vuelve al estado anterior
-  pop(payload = {}) {
-    if (!this._stack.length) return this._current;
-    if (this._current?.onExit) this._current.onExit();
-    this._current = this._stack.pop();
-    if (this._current?.onResume) this._current.onResume(payload);
-    return this._current;
-  }
-
   update(dt) {
     this._current?.update?.(dt);
   }
