@@ -19,7 +19,7 @@ Un juego arcade de defensa espacial desarrollado con **HTML5 Canvas** y **JavaSc
 - [Mecánicas del Juego](#mecánicas-del-juego)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
-- [Créditos](#créditos)
+
 
 ---
 
