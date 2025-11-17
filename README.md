@@ -96,11 +96,6 @@ Un juego arcade de defensa espacial desarrollado con **HTML5 Canvas** y **JavaSc
 git clone https://github.com/Erickezro/Web-Game-Lunar-Defender.git
 cd Web-Game-Lunar-Defender
 
-
-# 2. Abrir en el navegador
-Visitar: http://localhost:8000
-
-
 # Simplemente abrir index.html en tu navegador
 # Nota: Algunos navegadores pueden bloquear la carga de assets por CORS
 
