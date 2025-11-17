@@ -12,7 +12,6 @@
 
     <!-- Cuadro/Panel UI: grupo donde colocar botones, texto, etc. -->
     <div id="ui-panel" class="ui-panel" role="dialog" aria-label="Panel de menú">
-      
       <img id="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
       
       <div class="ui-buttons">
@@ -21,12 +20,10 @@
         <button id="stats-btn" class="ui-button">Stats</button>
         <button id="options-btn" class="ui-button">Opciones</button>
       </div>
-
     </div>
 
     <!-- Panel de Opciones (oculto por defecto) -->
     <div id="options-panel" class="ui-panel options-panel" role="dialog" aria-label="Panel de opciones" style="display:none;">
-
       <img id="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
       <h1>Opciones</h1>
 
@@ -43,23 +40,30 @@
 
     <!-- Panel de Historia (oculto por defecto) -->
     <div id="history-panel" class="ui-panel history-panel" role="dialog" aria-label="Panel de Historia" style="display: none;">
-
-      <img id ="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
-      <h1>Historia</h1>
+      <img id="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
+      <h1 style="font-size: 36px; text-align: center; color: #fff; font-family: 'Orbitron', sans-serif;">Historia de Lunar Defender</h1>
 
       <div class="history-text">
-        <p>En el año </p>
+        <p style="font-size: 20px; color: #ddd; text-align: justify; padding: 20px;">
+          En un futuro lejano, la humanidad ha alcanzado las estrellas, estableciendo colonias en varios planetas. La <b>Luna</b>, nuestro satélite natural, ha sido convertida en una <b>base espacial avanzada</b>. Desde allí, los humanos monitorean las amenazas que provienen del espacio exterior, pero algo inesperado está por suceder.
+          <br><br>
+          Un <b>ejército alienígena</b> ha comenzado a invadir el sistema solar, con la Luna como su primer objetivo. Estas <b>oleadas de naves espaciales</b>, <b>meteoritos gigantes</b> y <b>satélites controlados</b> se acercan con una misión: destruir todo lo que se interponga en su camino y tomar la Luna como su propio territorio.
+          <br><br>
+          En el papel de <b>astronauta defensor</b>, tu misión es <b>proteger la Luna</b> a toda costa. Debes enfrentarte a estas fuerzas alienígenas en intensas batallas espaciales, destruyendo naves, evitando meteoritos y rescatando lo que queda de la humanidad.
+          <br><br>
+          Mientras luchas, el <b>sistema de defensa lunar</b> se activa, pero no será suficiente para resistir el ataque. <b>Eres la última línea de defensa</b>, y el futuro de la humanidad depende de ti. Usa tu nave, tus reflejos y tu ingenio para sobrevivir, destruir a los invasores y salvar lo que queda de nuestra colonia en la Luna.
+          <br><br>
+          ¡La <b>Luna</b> está en peligro, y solo <b>tú</b> puedes salvarla!
+        </p>
       </div>
       
       <div style="width:100%; display:flex; justify-content:center; margin-top:8px;">
         <button id="history-back" class="ui-button">Volver</button>
       </div>
-
     </div>
 
     <!-- Panel de Estadísticas (oculto por defecto) -->
     <div id="stats-panel" class="ui-panel stats-panel" role="dialog" aria-label="Panel de Estadísticas" style="display:none;">
-
       <img id="game-logo" src="./assets/img/lunar-defender-logo.png" alt="logo Lunar Defender"/>
       <h1>Estadísticas</h1>
 
@@ -72,14 +76,12 @@
       <div style="width:100%; display:flex; justify-content:center; margin-top:8px;">
         <button id="stats-back" class="ui-button">Volver</button>
       </div>
-
     </div>
 
     <script type="module" src="./main.js"></script>
     <img src="./assets/img/star-field.jpg" alt="test" width="300">
 
-
-     <!-- Cuadro de vida en la esquina superior izquierda -->
+    <!-- Cuadro de vida en la esquina superior izquierda -->
     <div id="health-display" class="health-display">
       <span class="health-label">Vida:</span>
       <span id="health-value" class="health-value">100</span>
